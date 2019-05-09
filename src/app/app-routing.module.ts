@@ -14,7 +14,11 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'account-info', loadChildren: './account-info/account-info.module#AccountInfoPageModule' },
+  { path: 'fund-transfer', loadChildren: './fund-transfer/fund-transfer.module#FundTransferPageModule' },
+  { path: 'account-statement', loadChildren: './account-statement/account-statement.module#AccountStatementPageModule' },
+  { path: 'help', loadChildren: './help/help.module#HelpPageModule' }
 ];
 
 @NgModule({

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Account Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label color="dark">Name:</ion-label>
+      <ion-text slot="end">B Ghosh</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Account Number:</ion-label>
+      <ion-text slot="end">31022112223</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="dark">Address:</ion-label>
+      <p>2025 M Street, Northwest, Washington</p>
+    </ion-item>
+    <ion-item>
+      <ion-label color="dark">Balance:</ion-label>
+      <ion-text slot="end" color="secondary">{{balance}}</ion-text>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-text slot="start">Off</ion-text>
+      <ion-label>text (Start)</ion-label>
+    </ion-item> -->
+  </ion-list>
+
+
+  <ion-button expand="full" fill="solid" (click)="getBalance()">Get Balance</ion-button>
+</ion-content>

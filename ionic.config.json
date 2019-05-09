@@ -1,5 +1,7 @@
 {
   "name": "my-bg-bank",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
