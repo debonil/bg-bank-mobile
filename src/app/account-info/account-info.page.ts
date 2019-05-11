@@ -14,7 +14,7 @@ export class AccountInfoPage implements OnInit {
   ngOnInit() {
   }
 
-  async getBalance() {
+  async getBalance1() {
     const loading = await this.loadingController.create({
       message: 'loading...',
       duration: 2000
@@ -25,5 +25,19 @@ export class AccountInfoPage implements OnInit {
       loading.dismiss();
       this.balance = 'Rs 50000';
     }, 500);
+  }
+
+  async getBalance() {
+    const loading = await this.loadingController.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+    this.app.getBalance().then(
+      r => {
+        loading.dismiss();
+        this.balance = 'Rs ' + r;
+      }
+    );
   }
 }

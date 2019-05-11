@@ -5,27 +5,29 @@
 </ion-header>
 
 <ion-content>
-  <ion-button expand="full" size="large">Transfer to same bank</ion-button>
-  <ion-button expand="full" size="large">Transfer to other bank</ion-button>
-  <ion-list>
-    <ion-item>
-      <ion-label>Benefitiary AC No</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Confirm Benefitiary AC No</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Amount to transfer</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Remarks</ion-label>
-      <ion-textarea>
-      </ion-textarea>
-    </ion-item>
+  <!--   <ion-button expand="full" size="large">Transfer to same bank</ion-button>
+  <ion-button expand="full" size="large">Transfer to other bank</ion-button> -->
+  <form (submit)="transfer()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Benefitiary AC No</ion-label>
+        <ion-input type="number" required class="formControl" [(ngModel)]="acno" name="acno"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Confirm Benefitiary AC No</ion-label>
+        <ion-input type="number" required [(ngModel)]="cacno" name="cacno"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Amount to transfer</ion-label>
+        <ion-input type="number" [(ngModel)]="transferAmount" name="transferAmount" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Remarks</ion-label>
+        <ion-textarea>
+        </ion-textarea>
+      </ion-item>
 
-    <ion-button expand="transfer" (click)="transfer()">Transfer </ion-button>
-  </ion-list>
+      <ion-button expand="block" type="submit">Transfer </ion-button>
+    </ion-list>
+  </form>
 </ion-content>

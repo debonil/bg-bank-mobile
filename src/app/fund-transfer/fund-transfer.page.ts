@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { AppStateService } from '../app-state.service';
 
 @Component({
@@ -9,21 +9,65 @@ import { AppStateService } from '../app-state.service';
 })
 export class FundTransferPage implements OnInit {
 
-  constructor(public loadingController: LoadingController, private app: AppStateService) { }
+  transferAmount: number;
+  acno: number;
+  cacno: number;
+
+  constructor(public loadingController: LoadingController, private app: AppStateService,
+    private alert: AlertController) { }
 
   ngOnInit() {
   }
 
-  async transfer() {
-    const loading = await this.loadingController.create({
-      message: 'Please wait...',
-      duration: 2000
+  async presentAlert(msg) {
+    const alert = await this.alert.create({
+      header: 'Alert',
+      /// subHeader: 'Subtitle',
+      message: msg,
+      buttons: ['OK']
     });
-    await loading.present();
 
-    setTimeout(() => {
-      loading.dismiss();
-      alert('Fund transfer successful !');
-    }, 500);
+    await alert.present();
   }
+
+  validate(): boolean {
+    if (!this.acno) {
+      this.presentAlert('Please enter account number > 1');
+      return false;
+    }
+    if (!this.cacno) {
+      this.presentAlert('Please enter confirm account number > 1');
+      return false;
+    }
+    if (!this.transferAmount) {
+      this.presentAlert('Please enter transfer amount more than one rupees.');
+      return false;
+    }
+    if (this.acno !== this.cacno) {
+      this.presentAlert('Benefitiary account number and confirm benefitiary account number must be same!!');
+      return false;
+    }
+    return true;
+  }
+  async transfer() {
+    if (this.validate()) {
+
+      const loading = await this.loadingController.create({
+        message: 'Please wait...',
+        duration: 2000
+      });
+      await loading.present();
+      this.app.transfer(this.transferAmount).then(
+        r => {
+          loading.dismiss();
+          this.presentAlert(r).then(
+            () => {
+              window.location.href = '/home';
+            }
+          );
+        }
+      );
+    }
+  }
+
 }
