@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { AppStateService } from '../app-state.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class FundTransferPage implements OnInit {
   cacno: number;
 
   constructor(public loadingController: LoadingController, private app: AppStateService,
-    private alert: AlertController) { }
+    private alert: AlertController, private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -62,7 +62,7 @@ export class FundTransferPage implements OnInit {
           loading.dismiss();
           this.presentAlert(r).then(
             () => {
-              window.location.href = '/home';
+              this.navCtrl.navigateRoot('/home');
             }
           );
         }
