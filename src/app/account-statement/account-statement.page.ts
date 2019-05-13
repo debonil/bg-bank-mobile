@@ -1,3 +1,4 @@
+import { AppStateService } from './../app-state.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountStatementPage implements OnInit {
 
-  constructor() { }
+  constructor(private appState: AppStateService) { }
 
   ngOnInit() {
+  }
+
+  get txns() {
+    return this.appState.txns;
   }
 
 }

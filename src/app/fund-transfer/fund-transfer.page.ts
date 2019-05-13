@@ -57,7 +57,7 @@ export class FundTransferPage implements OnInit {
         duration: 2000
       });
       await loading.present();
-      this.app.transfer(this.transferAmount).then(
+      this.app.balanceTransfer(this.acno, this.transferAmount).then(
         r => {
           loading.dismiss();
           this.presentAlert(r).then(
